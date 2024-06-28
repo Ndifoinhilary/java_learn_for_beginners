@@ -27,4 +27,11 @@ public class StudentServicesImpl implements StudentServices {
 
         return allStudents.stream().map(student -> modelMapper.map(student, StudentDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void createStudent(StudentDto studentDto) {
+        var student = modelMapper.map(studentDto, Student.class);
+        studentRespository.save(student);
+
+    }
 }
