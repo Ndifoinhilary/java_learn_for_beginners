@@ -34,4 +34,25 @@ public class StudentServicesImpl implements StudentServices {
         studentRespository.save(student);
 
     }
+
+    @Override
+    public StudentDto getStudentById(Long studentId) {
+        var student = studentRespository.findById(studentId).get();
+        return modelMapper.map(student, StudentDto.class);
+    }
+
+    @Override
+    public void edited(StudentDto studentDto, Long studentId) {
+        var student = studentRespository.findById(studentId).get();
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setEmail(studentDto.getEmail());
+        studentRespository.save(student);
+    }
+
+    @Override
+    public void delete(Long studentId) {
+        var student = studentRespository.findById(studentId).get();
+        studentRespository.delete(student);
+    }
 }
