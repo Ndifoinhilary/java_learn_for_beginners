@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BlogPostDto {
     private Long id;
     private String title;

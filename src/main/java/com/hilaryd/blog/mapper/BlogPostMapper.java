@@ -5,7 +5,7 @@ import com.hilaryd.blog.entity.BlogPost;
 
 public class BlogPostMapper {
 
-    public BlogPostDto mapToDto(BlogPost blogPost){
+    public static BlogPostDto mapToDto(BlogPost blogPost){
         return BlogPostDto.builder()
                 .id(blogPost.getId())
                 .title(blogPost.getTitle())
@@ -18,7 +18,7 @@ public class BlogPostMapper {
 
     }
 
-    public BlogPost mapToPost(BlogPostDto blogPostDto){
+    public static BlogPost mapToPost(BlogPostDto blogPostDto){
         return  BlogPost.builder()
                 .id(blogPostDto.getId())
                 .title(blogPostDto.getTitle())

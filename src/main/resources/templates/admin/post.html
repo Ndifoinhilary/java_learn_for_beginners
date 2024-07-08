@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:include="~{common/header :: hearder}"></div>
+<body>
+<div th:replace="~{common/nav :: nav}"></div>
+<div class="container">
+
+    <div class="row">
+        <h1> Blog Posts </h1>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+      <tr>
+          <th style="width: 10%">#</th>
+          <th style="width: 20%">Post Tittle</th>
+          <th style="width: 30%">Description</th>
+          <th style="width: 20%">Created</th>
+          <th style="width: 20%">Action</th>
+      </tr>
+      </thead>
+
+        <tbody>
+        <tr th:each="post,postStatus : ${posts}">
+            <td th:text="${postStatus.count}"></td>
+            <td th:text="${post.title}"></td>
+            <td th:text="${post.description}"></td>
+            <td th:text="${post.createdOn.dayOfMonth}"></td>
+            <td></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<div th:insert="~{common/footer :: footer}"></div>
+
+</body>
+</html>
