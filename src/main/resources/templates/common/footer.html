@@ -7,14 +7,31 @@
 <body>
 
 <div th:fragment="footer">
-  <footer class="footer-copyright text-center bg-dark py-3" style="position: fixed; height: 80px; width: 100%; bottom: 0">
-    <div>
-      <strong>
-        Copyright &COPY;2024 <a href="#">codewithhilary</a>
-        All rights reserved
-      </strong>
-    </div>
-  </footer>
+    <footer class="footer-copyright text-center bg-dark py-3"
+            style="position: fixed; height: 80px; width: 100%; bottom: 0">
+        <div>
+            <strong>
+                Copyright &COPY;2024 <a href="#">codewithhilary</a>
+                All rights reserved
+            </strong>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
+        <script>
+
+
+            ClassicEditor
+                .create( document.querySelector( '#content' ))
+                .then( editor => {
+                    window.editor = editor;
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
+    </footer>
 </div>
 
 </body>
