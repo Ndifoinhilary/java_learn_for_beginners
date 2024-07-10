@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,4 +55,26 @@ public class BlogPostController {
         url = url.replaceAll("[^A-Za-z0-9]", "-");
         return url;
     }
+
+//    blog post update feature
+
+    @GetMapping("/admin/update/{postId}/post")
+    public String updateForm(@PathVariable("postId") Long postId, Model model){
+       var post =  postServices.findPostById(postId);
+       model.addAttribute("post", post);
+        return "/admin/update";
+    }
+
+    @PostMapping("/admin/post/{postId}/update")
+    public String updatePost(@PathVariable("postId") Long postId,@Valid @ModelAttribute("post") BlogPostDto blogPostDto, BindingResult result, Model model){
+        if (result.hasErrors()){
+            model.addAttribute("post", blogPostDto);
+            return "/admin/update";
+        }
+        blogPostDto.setUrl(getUrl(blogPostDto.getTitle()));
+        postServices.updatePost(blogPostDto, postId);
+        return "redirect:/admin/posts";
+    }
+
+
 }

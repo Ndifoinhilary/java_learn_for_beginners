@@ -28,7 +28,9 @@
             <td th:text="${post.title}"></td>
             <td th:text="${post.description}"></td>
             <td th:text="${post.createdOn.dayOfMonth}"></td>
-            <td></td>
+            <td>
+                <a th:href="@{/admin/update/{postId}/post(postId=${post.id})}" class="btn btn-primary">Edit</a>
+            </td>
         </tr>
         </tbody>
 

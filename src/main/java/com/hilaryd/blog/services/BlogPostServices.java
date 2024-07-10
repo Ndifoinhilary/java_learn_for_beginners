@@ -9,4 +9,8 @@ public interface BlogPostServices {
     List<BlogPostDto> listAllPost();
 
     void createBlogPost(BlogPostDto postDto);
+
+    BlogPostDto findPostById(Long postId);
+
+    void updatePost(BlogPostDto postDto, Long postId);
 }
