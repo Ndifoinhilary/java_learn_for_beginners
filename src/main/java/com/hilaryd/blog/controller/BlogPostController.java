@@ -89,8 +89,8 @@ public class BlogPostController {
 //    view blog post
 
     @GetMapping("/admin/view/{postId}/view")
-    public String viewPost(@PathVariable("postId") String postUrl, Model model){
-        var post = postServices.findPostByUrl(postUrl);
+    public String viewPost(@PathVariable("postId") Long postId, Model model){
+        var post = postServices.findPostById(postId);
         model.addAttribute("post", post);
         return "admin/view_post";
     }

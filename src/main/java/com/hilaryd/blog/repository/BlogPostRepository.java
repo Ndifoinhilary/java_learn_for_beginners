@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
 
-    Optional<BlogPost> findByUrl(String url);
+    @Query("select p from BlogPost p where p.url = :url")
+   BlogPost findByUrl(String url);
 
 
     @Query("SELECT p from BlogPost p WHERE "

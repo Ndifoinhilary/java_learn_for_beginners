@@ -27,7 +27,7 @@
             <td th:text="${postStatus.count}"></td>
             <td th:text="${post.title}"></td>
             <td th:text="${post.description}"></td>
-            <td th:text="${post.createdOn.dayOfMonth}"></td>
+            <td th:text="${#temporals.format(post.createdOn, 'MMM-d-yyy')}"></td>
             <td>
                 <a th:href="@{/admin/update/{postId}/post(postId=${post.id})}" class="btn btn-primary">Edit</a>
                 <a th:href="@{/admin/delete/{postId}/post(postId=${post.id})}" class="btn btn-danger">Delete</a>

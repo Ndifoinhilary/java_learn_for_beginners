@@ -57,7 +57,7 @@ public class BlogPostImpl implements BlogPostServices {
 
     @Override
     public BlogPostDto findPostByUrl(String postUrl) {
-        var post =  blogPostRepository.findByUrl(postUrl);
+        BlogPost post = blogPostRepository.findByUrl(postUrl);
         return modelMapper.map(post, BlogPostDto.class);
     }
 
