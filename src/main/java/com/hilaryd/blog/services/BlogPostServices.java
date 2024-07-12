@@ -13,4 +13,10 @@ public interface BlogPostServices {
     BlogPostDto findPostById(Long postId);
 
     void updatePost(BlogPostDto postDto, Long postId);
+
+    void delete(Long postId);
+
+    BlogPostDto findPostByUrl(String postUrl);
+
+    List<BlogPostDto> searchedBlogPost(String query);
 }

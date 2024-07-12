@@ -77,4 +77,31 @@ public class BlogPostController {
     }
 
 
+//    delete a post by Id
+
+
+    @GetMapping("/admin/delete/{postId}/post")
+    public String deletePost(@PathVariable("postId") Long postId ){
+        postServices.delete(postId);
+        return "redirect:/admin/posts";
+    }
+
+//    view blog post
+
+    @GetMapping("/admin/view/{postId}/view")
+    public String viewPost(@PathVariable("postId") String postUrl, Model model){
+        var post = postServices.findPostByUrl(postUrl);
+        model.addAttribute("post", post);
+        return "admin/view_post";
+    }
+
+//    performing searching operation
+
+    @GetMapping("/admin/posts/search")
+    public String searchPost(@RequestParam(value = "query") String query, Model model){
+        List<BlogPostDto> postDtos = postServices.searchedBlogPost(query);
+        model.addAttribute("posts", postDtos);
+
+        return "/admin/post";
+    }
 }

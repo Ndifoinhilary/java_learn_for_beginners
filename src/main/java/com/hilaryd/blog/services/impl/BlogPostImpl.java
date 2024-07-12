@@ -48,4 +48,22 @@ public class BlogPostImpl implements BlogPostServices {
         post.setUpdatedOn(postDto.getUpdatedOn());
         blogPostRepository.save(post);
     }
+
+    @Override
+    public void delete(Long postId) {
+        BlogPost post = blogPostRepository.findById(postId).get();
+        blogPostRepository.delete(post);
+    }
+
+    @Override
+    public BlogPostDto findPostByUrl(String postUrl) {
+        var post =  blogPostRepository.findByUrl(postUrl);
+        return modelMapper.map(post, BlogPostDto.class);
+    }
+
+    @Override
+    public List<BlogPostDto> searchedBlogPost(String query) {
+        List<BlogPost> posts = blogPostRepository.searchPost(query);
+        return posts.stream().map(post -> modelMapper.map(post, BlogPostDto.class)).collect(Collectors.toList());
+    }
 }

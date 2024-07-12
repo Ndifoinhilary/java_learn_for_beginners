@@ -30,6 +30,9 @@
             <td th:text="${post.createdOn.dayOfMonth}"></td>
             <td>
                 <a th:href="@{/admin/update/{postId}/post(postId=${post.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/admin/delete/{postId}/post(postId=${post.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/admin/view/{postId}/view(postId=${post.id})}" class="btn  btn-info">View</a>
+
             </td>
         </tr>
         </tbody>
