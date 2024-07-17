@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:include="~{common/header :: hearder}"></div>
+<body>
+<div th:replace="~{common/nav :: nav}"></div> <br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div th:each="post : ${posts}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            <a th:href="@{/post/{postUrl}(postUrl=${post.url})}" th:text="${post.title}"> </a>
+                        </h3>
+                        <div>
+                            <strong th:text="${#temporals.format(post.createdOn, 'MMM-d-yyyy')}"></strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span th:utext="${post.description}"></span>
+                        <a th:href="@{/post/{postUrl}(postUrl=${post.url})}">Read More </a>
+                    </div>
+                </div><br>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h1> <strong> Blog Search</strong>  </h1>
+                </div>
+               <div class="card-body">
+                   <div>
+                       <form class="d-flex" role="search" th:action="@{/post/searcher}">
+                           <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+                           <button class="btn btn-primary" type="submit">Search</button>
+                       </form>
+                   </div>
+               </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div th:insert="~{common/footer :: footer}"></div><br><br><br>
+</body>
+</html>

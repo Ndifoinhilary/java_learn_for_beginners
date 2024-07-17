@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Builder
@@ -20,4 +21,6 @@ public class BlogPostDto {
     private String description;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+
+    private Set<BlogPostCommentDto> comments;
 }

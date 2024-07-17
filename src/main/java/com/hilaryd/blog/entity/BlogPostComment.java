@@ -6,35 +6,35 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
-@Getter
+
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "posts")
-public class BlogPost {
+@Table(name = "blog_post_comment")
+@Entity(name = "BlogPostComment")
+public class BlogPostComment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String title;
-    private String url;
-    @Lob
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
-    private String description;
+    @Column(nullable = false)
+    private String email;
+    @Column(nullable = false)
+    private String userName;
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
-    @OneToMany(
-            mappedBy = "blogPost",
-            cascade = CascadeType.REMOVE
-    )
-    private Set<BlogPostComment> blogPostComments = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "blog_post_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "blog_post_fk"))
+    private BlogPost blogPost;
+
 }
