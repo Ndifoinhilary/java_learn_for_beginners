@@ -8,7 +8,8 @@ import com.hilaryd.blog.repository.UserRespository;
 import com.hilaryd.blog.services.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,16 +21,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private final UserRespository userRespository;
     private final RoleRepository roleRepository;
-    private final ModelMapper modelMapper;
 
-    private  final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public void registerUser(RegistrationDto registrationDto) {
         Role role = roleRepository.findByName("ROLE_USER").get();
-        User user =User.builder()
+        User user = User.builder()
                 .userName(registrationDto.getUserName())
                 .email(registrationDto.getEmail())
-                .password(bCryptPasswordEncoder.encode(registrationDto.getPassword()))
+                .password(passwordEncoder.encode(registrationDto.getPassword()))
                 .roles(List.of(role))
                 .build();
         userRespository.save(user);

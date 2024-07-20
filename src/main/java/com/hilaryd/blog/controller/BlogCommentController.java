@@ -33,6 +33,6 @@ public class BlogCommentController {
         }
 
         postCommentServices.createComment(postUrl, bLogPostCommentDto);
-        return STR."redirect:/post/\{postUrl}";
+        return "redirect:/post/" + postUrl;
     }
 }

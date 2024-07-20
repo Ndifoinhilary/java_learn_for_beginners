@@ -1,7 +1,6 @@
 package com.hilaryd.blog.controller;
 
 import com.hilaryd.blog.dto.RegistrationDto;
-import com.hilaryd.blog.dto.UserDto;
 import com.hilaryd.blog.entity.User;
 import com.hilaryd.blog.services.RegistrationService;
 import jakarta.validation.Valid;
@@ -40,11 +39,20 @@ public class AuthController {
         }
         if (result.hasErrors()) {
             model.addAttribute("user", registrationDto);
-            return "blog/register";
+            return "register";
         }
 
         registrationService.registerUser(registrationDto);
 
-        return "redirect:blog/register?success";
+        return "redirect:register?success";
+    }
+
+
+//    Handle login form and submission
+
+    @GetMapping("/login")
+    public String showLoginForm() {
+
+        return "login";
     }
 }

@@ -32,6 +32,10 @@ public class BlogPost {
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
+    @ManyToOne()
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
+
     @OneToMany(
             mappedBy = "blogPost",
             cascade = CascadeType.REMOVE

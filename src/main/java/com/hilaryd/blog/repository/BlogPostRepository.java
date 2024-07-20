@@ -18,4 +18,9 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
             + " p.title LIKE CONCAT('%', :query, '%') OR "
             + "p.description LIKE CONCAT('%', :query, '%') ")
     List<BlogPost> searchPost(String query);
+
+
+    @Query(value = """
+            select * from posts p  where p.created_by = :userId""", nativeQuery = true)
+    List<BlogPost> findBlogPostByUse(Long userId);
 }

@@ -19,4 +19,6 @@ public interface BlogPostServices {
     BlogPostDto findPostByUrl(String postUrl);
 
     List<BlogPostDto> searchedBlogPost(String query);
+
+    List<BlogPostDto> findAllBlogPostForUser();
 }

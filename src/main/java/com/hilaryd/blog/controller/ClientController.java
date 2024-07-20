@@ -19,7 +19,7 @@ public class ClientController {
     private final BlogPostServices postServices;
 
 
-    @GetMapping()
+    @GetMapping("/")
     public String clientPostView(Model model){
         List<BlogPostDto> posts = postServices.listAllPost();
         model.addAttribute("posts", posts);

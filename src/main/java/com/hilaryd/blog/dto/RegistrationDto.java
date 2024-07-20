@@ -25,6 +25,6 @@ public class RegistrationDto {
 
 
     public String getUserName(){
-        return STR."\{firstName} \{lastName}";
+        return  this.firstName + " " + this.lastName;
     }
 }
