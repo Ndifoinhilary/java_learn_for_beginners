@@ -39,5 +39,8 @@ second_max = max
 max = arr[i]
 else if ( arr[i] > max && arr[i] != max
 second_max = arr[i]
-
+else if (arr[i] > secondLarges && arr[i] != max)  {
+                System.out.println(max);
+                secondLarges = arr[i];
+            }
  */
